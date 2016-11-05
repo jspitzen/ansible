@@ -1,0 +1,6 @@
+---
+- hosts: 192.168.2.7
+  become: yes
+
+  tasks:
+    - include: ../users/jorick.yml
