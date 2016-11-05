@@ -1,7 +1,13 @@
----
+--- 
   - name: add user Jorick
     user: 
       name=jorick comment="Jorick Spitzen"
       shell=/bin/bash
   - name: add RSA key for Jorick
     authorized_key: user=jorick key="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAzo4meCqWcdY9vtaDd3IUUA6pF8IUCB5rnqP7lmmCJoqQ4tk4UZszYdO5Wf9kGarabBOyrxGGYev+p5ZcIc1Ytd23cfMUNRXQb0wMRCKQCQZfcDDKyZY7u1VowcgYpEJcIFw53UJjpKazQ2Yof9aJj20Ajuln6JxfkCi3D/zvm+QQ+SApB0HMAZI5JeDfTcARkUjXZm71DPWksIahyxsx+xQgkBgDTfjYjTR0w4qqBoAMtlFLRhyg/MHdpHFR17SRMPEmDhLRcxUPpbgV04fTmbdw6NlKY41LRJ5e8zClosyeUhP3nVG4GNd34jE/PXaIldGTECNeqmr44siV8S9fiQ== jorick@JORICK_LAPTOP"
+  - name: allow passwordless sudo
+    lineinfile: dest=/etc/sudoers.d/jorick owner=root group=root mode=0440
+                line="%jorick ALL=(ALL) NOPASSWD:ALL"
+                state=present
+                create=yes
+                validate='visudo -cf %s'
