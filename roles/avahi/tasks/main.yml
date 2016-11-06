@@ -1,0 +1,8 @@
+---
+
+  - name: Install avahi
+    become: yes
+    apt:
+      name: avahi-daemon
+  - name: Make sure Avahi is running
+    service: name=avahi-daemon state=started

@@ -1,6 +1,9 @@
 ---
 - hosts: 192.168.2.7
   become: yes
+  
+  roles:
+    - ../roles/avahi
 
   tasks:
     - include: ../users/jorick.yml
